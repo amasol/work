@@ -12,6 +12,27 @@
 
 #include "../includes/ft_printf.h"
 
+static char		*ft_printf_h_2(char *format, t_inf *inf)
+{
+	if (*format == '%' && *(format + 1) == '%')
+	{
+		inf->r += write(1, "%", 1);
+		format += 2;
+	}
+	else if (inf->zz == 1)
+	{
+		format++;
+		inf->zz = 0;
+	}
+	else
+	{
+		ft_putchar(*format);
+		inf->r += 1;
+		format++;
+	}
+	return (format);
+}
+
 static int		ft_printf_h(char *format, va_list lst, t_inf *inf)
 {
 	while (*format != '\0')
@@ -24,22 +45,9 @@ static int		ft_printf_h(char *format, va_list lst, t_inf *inf)
 			parsing(format, lst, inf);
 			format += inf->cou_format;
 		}
-		else if (*format == '%' && *(format + 1) == '%')
-		{
-			inf->r += write(1, "%", 1);
-			format += 2;
-		}
-		else if (inf->zz == 1)
-		{
-			format++;
-			inf->zz = 0;
-		}
-		else
-		{
-			ft_putchar(*format);
-			inf->r += 1;
-			format++;
-		}
+		if ((*format && *format != '%') ||
+			(*format == '%' && *(format + 1) == '%'))
+			format = ft_printf_h_2(format, inf);
 	}
 	return (0);
 }
@@ -57,7 +65,7 @@ int				ft_printf(const char *format, ...)
 		inf.r += write(1, format, 1);
 		format++;
 	}
-		if (*format == '%' && *(format + 1) == 0)
+	if (*format == '%' && *(format + 1) == 0)
 		return (inf.r);
 	ft_printf_h((char *)format, lst, &inf);
 	inf.r += inf.r_h;

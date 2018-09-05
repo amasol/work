@@ -80,12 +80,12 @@ int			ft_flg_ss(va_list lst, char *format, t_flg *flg, t_inf *inf)
 {
 	wchar_t		*sstr;
 
-	if (*format == 'S' && MB_LEN_MAX == 1)
+	if (*format == 'S' && MB_CUR_MAX == 1)
 	{
 		ft_flg_s(lst, format, flg, inf);
 		return (1);
 	}
-	else if (*format == 'S' || (*format == 's' && flg->l == 1))
+	if (*format == 'S' || (*format == 's' && flg->l == 1))
 	{
 		sstr = va_arg(lst, wchar_t *);
 		if (sstr == NULL)

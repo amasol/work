@@ -21,7 +21,6 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>
-//# include <locale.h>
 
 typedef struct	s_flg
 {
@@ -61,6 +60,7 @@ typedef struct	s_inf
 	int			un_j;
 	int			intm_j;
 	int			zz;
+	int			w_ch;
 }				t_inf;
 
 int				ft_printf(const char *format, ...);
@@ -135,7 +135,7 @@ char			*ft_strnew(size_t size);
 void			ft_bzero(void *s, size_t n);
 int				ft_isspace(int c);
 void			ft_putwchar(wchar_t c, t_inf *inf);
-int				ft_lenwchar(wchar_t c);
+int				ft_lenwchar(wchar_t c, t_inf *inf);
 char			*ft_itoa_base_uintmax(uintmax_t nbr, unsigned base, char c);
 intmax_t		ft_putnbr_intmax(intmax_t nb);
 uintmax_t		ft_putnbr_uintmax_t(uintmax_t nb);
@@ -150,7 +150,9 @@ int				cast_flg_p_h5(t_inf *inf, t_flg *flg, char *str);
 int				cast_flg_s_h5(t_inf *inf, t_flg *flg, char *str, char *tmp);
 int				cast_flg_ss_h5(t_inf *inf, t_flg *flg, wchar_t *str);
 int				cast_flg_x_h5(t_inf *inf, uintmax_t i,
-								 t_flg *flg, char *str);
+					t_flg *flg, char *str);
 int				cast_flg_di_h6(t_inf *inf, intmax_t i, t_flg *flg, char *str);
 int				cast_flg_di_h2(t_inf *inf, intmax_t i, t_flg *flg, char *str);
+void			cast_flg_ss_h6(t_inf *inf, wchar_t *str);
+
 #endif

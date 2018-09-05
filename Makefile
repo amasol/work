@@ -10,7 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = libftprintf.a
 
 CC = gcc
@@ -29,7 +28,7 @@ SRC 		=	ft_printf.c \
 				ft_isdigit.c ft_strnew.c ft_isspace.c help_2.c help_flag.c\
 				ft_putchar.c ft_putstr.c ft_lenwchar.c ft_putwchar.c \
 				ft_putnbr.c no_spec.c ft_putstr_len.c help_flag_2.c \
-				help_3.c
+				help_3.c help_4.c
 
 all: $(NAME)
 

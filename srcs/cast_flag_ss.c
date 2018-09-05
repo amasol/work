@@ -22,15 +22,14 @@ static int			cast_flg_ss_h4(t_inf *inf, t_flg *flg, wchar_t *str)
 	if (flg->wid == 1 && flg->preci == 1 && inf->wid_t > 0)
 	{
 		inf->un_j = 0;
-		inf->cou_t = (inf->wid_t > inf->wid) ? inf->wid_t - inf->wid : 0;
-		inf->r = (inf->cou_t > 0) ? inf->r += ps_l(" ", inf->cou_t) : inf->r;
-		while (str[i] && inf->wid != 0 && inf->un_j < inf->wid)
+		cast_flg_ss_h6(inf, str);
+		while (str[i] && inf->wid != 0 && inf->un_j < inf->cou)
 		{
-			inf->un_j += ft_lenwchar(str[i]);
-			if (inf->wid >= inf->un_j && inf->un_j <= inf->wid)
+			inf->un_j += ft_lenwchar(str[i], inf);
+			if (inf->cou >= inf->un_j)
 			{
 				ft_putwchar(str[i], inf);
-				inf->wid -= inf->un_j;
+				inf->cou -= inf->un_j;
 				inf->un_j = 0;
 			}
 			i++;
@@ -52,7 +51,7 @@ static int			cast_flg_ss_h3(t_inf *inf, t_flg *flg, wchar_t *str)
 		inf->un_j = 0;
 		while (str[i] && inf->wid != 0 && inf->un_j < inf->wid)
 		{
-			inf->un_j += ft_lenwchar(str[i]);
+			inf->un_j += ft_lenwchar(str[i], inf);
 			if (inf->wid >= inf->un_j && inf->un_j <= inf->wid)
 			{
 				ft_putwchar(str[i], inf);
@@ -128,7 +127,7 @@ int					cast_flg_ss(t_inf *inf, t_flg *flg, wchar_t *str)
 	i = 0;
 	g_lob = inf->r;
 	while (str && str[i])
-		inf->un_j += ft_lenwchar(str[i++]);
+		inf->un_j += ft_lenwchar(str[i++], inf);
 	i = 0;
 	if (str == NULL && (flg->space == 1 || inf->nothi == 0 || flg->pls == 1))
 	{

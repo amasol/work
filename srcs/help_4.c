@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lenwchar.c                                      :+:      :+:    :+:   */
+/*   help_4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amasol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 20:36:43 by amasol            #+#    #+#             */
-/*   Updated: 2018/08/28 20:36:44 by amasol           ###   ########.fr       */
+/*   Created: 2018/09/05 19:51:31 by amasol            #+#    #+#             */
+/*   Updated: 2018/09/05 19:51:32 by amasol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int				ft_lenwchar(wchar_t c, t_inf *inf)
+void			cast_flg_ss_h6(t_inf *inf, wchar_t *str)
 {
-	if (c <= 0x7F)
+	int i;
+
+	i = 0;
+	inf->w_ch = 0;
+	while (inf->wid > inf->cou)
 	{
-		inf->w_ch += 1;
-		return (1);
+		inf->w_ch = 0;
+		inf->cou += ft_lenwchar(str[i], inf);
+		if (inf->wid < inf->cou)
+		{
+			inf->cou -= inf->w_ch;
+			break ;
+		}
 	}
-	else if (c <= 0x7FF)
-	{
-		inf->w_ch += 2;
-		return (2);
-	}
-	else if (c <= 0xFFFF)
-	{
-		inf->w_ch += 3;
-		return (3);
-	}
-	else if (c <= 0x10FFFF)
-	{
-		inf->w_ch += 4;
-		return (4);
-	}
-	return (0);
+	inf->cou_t = (inf->wid_t > inf->cou) ? inf->wid_t - inf->cou : 0;
+	inf->r = (inf->cou_t > 0) ? inf->r += ps_l(" ", inf->cou_t) : inf->r;
 }

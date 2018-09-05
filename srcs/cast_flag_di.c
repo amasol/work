@@ -122,7 +122,6 @@ static int	cast_flg_di_h(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 
 int			cast_flg_di(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 {
-	g_lob = inf->r;
 	if (inf->cou > 0 && flg->preci == 0 && inf->wid == 0)
 	{
 		inf->r += ft_cou_int(ft_putnbr_intmax(i));
@@ -140,6 +139,7 @@ int			cast_flg_di(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 	else if (flg->wid == 1 && flg->preci == 0 &&
 				flg->min != 1 && inf->min_v != 1 && flg->space != 1)
 	{
+		inf->r = (flg->pls == 1) ? inf->r += write(1, "+", 1) : inf->r;
 		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
 		inf->r += ft_cou_int(ft_putnbr_intmax(i));
 	}

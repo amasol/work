@@ -64,7 +64,7 @@ void			cast_flg_c(t_inf *inf, t_flg *flg, char str)
 
 void			cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c)
 {
-	inf->un_j = ft_lenwchar(c);
+	inf->un_j = ft_lenwchar(c, inf);
 	if (flg->wid == 1 && flg->preci == 0)
 	{
 		inf->cou = (inf->un_j < inf->wid) ? inf->wid - inf->un_j : inf->r;
