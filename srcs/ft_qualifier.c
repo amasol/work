@@ -61,7 +61,7 @@ int		output_after(char *format, va_list lst, t_flg *flg, t_inf *inf)
 	i = 0;
 	if (format[i] == 'Z')
 	{
-		pars_hi_z(&format[i], flg, inf, lst);
+		pars_hi_z(flg, inf, lst);
 		return (1);
 	}
 	while (ft_isdigit(format[i]) || ft_flg_check(format[i]))

@@ -29,8 +29,11 @@ static int		ft_printf_h(char *format, va_list lst, t_inf *inf)
 			inf->r += write(1, "%", 1);
 			format += 2;
 		}
-		else if (ft_qualifier(*format))
+		else if (inf->zz == 1)
+		{
 			format++;
+			inf->zz = 0;
+		}
 		else
 		{
 			ft_putchar(*format);
@@ -54,7 +57,7 @@ int				ft_printf(const char *format, ...)
 		inf.r += write(1, format, 1);
 		format++;
 	}
-	if (*format == '%' && *(format + 1) == 0)
+		if (*format == '%' && *(format + 1) == 0)
 		return (inf.r);
 	ft_printf_h((char *)format, lst, &inf);
 	inf.r += inf.r_h;

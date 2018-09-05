@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>
+//# include <locale.h>
 
 typedef struct	s_flg
 {
@@ -59,13 +60,14 @@ typedef struct	s_inf
 	int			r_h;
 	int			un_j;
 	int			intm_j;
+	int			zz;
 }				t_inf;
 
 int				ft_printf(const char *format, ...);
 void			initialization_flg(t_flg *flg, t_inf *inf);
 void			pars_spec(char *format, va_list lst, t_flg *flg, t_inf *inf);
 void			pars_no_spec(t_flg *flg, t_inf *inf);
-int				pars_hi_z(char *format, t_flg *flg, t_inf *inf, va_list lst);
+int				pars_hi_z(t_flg *flg, t_inf *inf, va_list lst);
 int				ft_qualifier(char s);
 intmax_t		min_v_di(intmax_t i, t_flg *flg, t_inf *inf);
 intmax_t		cast_intmax(intmax_t i, t_flg *flg);

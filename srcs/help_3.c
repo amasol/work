@@ -26,6 +26,7 @@ static void		initialization_flg_h(t_flg *flg, t_inf *inf)
 	inf->un_j = 0;
 	inf->intm_j = 0;
 	inf->nothi = 0;
+	inf->zz = 0;
 	flg->nothi_flg = 0;
 }
 

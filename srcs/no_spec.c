@@ -33,25 +33,17 @@ void			pars_no_spec(t_flg *flg, t_inf *inf)
 		inf->r += write(1, "%", 1);
 }
 
-static void		pars_hi_z_h(char *format, t_flg *flg, t_inf *inf)
+static void		pars_hi_z_h(t_flg *flg, t_inf *inf)
 {
 	if (inf->wid > 0 && flg->min == 0 && flg->zero == 1)
 	{
 		inf->r = (inf->wid > 0) ? inf->r += ps_l("0", inf->wid) : inf->r;
 		inf->r += write(1, "Z", 1);
-	}
-	else
-	{
-		while (*format)
-		{
-			ft_putchar(*format);
-			inf->r += 1;
-			format++;
-		}
+		inf->zz = 1;
 	}
 }
 
-int				pars_hi_z(char *format, t_flg *flg, t_inf *inf, va_list lst)
+int				pars_hi_z(t_flg *flg, t_inf *inf, va_list lst)
 {
 	intmax_t i;
 
@@ -62,15 +54,17 @@ int				pars_hi_z(char *format, t_flg *flg, t_inf *inf, va_list lst)
 	{
 		inf->r = (i != 0) ? inf->r += ps_l(" ", inf->wid) : inf->r;
 		inf->r += write(1, "Z", 1);
+		inf->zz = 1;
 	}
 	else if (inf->wid > 0 && flg->min == 1 && flg->zero == 0)
 	{
 		inf->r += write(1, "Z", 1);
 		inf->r = (i != 0) ? inf->r += ps_l(" ", inf->wid) : inf->r;
+		inf->zz = 1;
 	}
 	if (g_lob < inf->r)
 		return (1);
-	pars_hi_z_h(format, flg, inf);
+	pars_hi_z_h(flg, inf);
 	return (0);
 }
 
