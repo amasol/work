@@ -117,12 +117,6 @@ int				output_after(char *format, va_list lst,
 int				is_zero(char *str);
 int				is_check_specs(char s);
 int				is_check_preci(char *str, t_flg *flg);
-int				cast_flg_di_h5(t_inf *inf, intmax_t i, t_flg *flg);
-int				cast_flg_p_h5(t_inf *inf, t_flg *flg, char *str);
-int				cast_flg_s_h5(t_inf *inf, t_flg *flg, char *str, char *tmp);
-int				cast_flg_ss_h5(t_inf *inf, t_flg *flg, wchar_t *str);
-int				cast_flg_x_h5(t_inf *inf, uintmax_t i,
-					t_flg *flg, char *str);
 /*
 ** -------------------------- Functions libft-------------------------------
 */
@@ -151,5 +145,10 @@ uintmax_t		ft_strlen_uintmax(const char *s);
 */
 intmax_t		ft_cou_int(intmax_t n);
 uintmax_t		ft_cou_uint(uintmax_t n);
-
+int				cast_flg_di_h5(t_inf *inf, intmax_t i, t_flg *flg);
+int				cast_flg_p_h5(t_inf *inf, t_flg *flg, char *str);
+int				cast_flg_s_h5(t_inf *inf, t_flg *flg, char *str, char *tmp);
+int				cast_flg_ss_h5(t_inf *inf, t_flg *flg, wchar_t *str);
+int				cast_flg_x_h5(t_inf *inf, uintmax_t i,
+								 t_flg *flg, char *str);
 #endif

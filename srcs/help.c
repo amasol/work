@@ -14,7 +14,12 @@
 
 int			cast_flg_di_h5(t_inf *inf, intmax_t i, t_flg *flg)
 {
-	if (flg->slash == 0 &&
+	if (flg->space == 1 && flg->preci != 1 && i > 0 && inf->nothi == 1)
+	{
+		inf->r += write(1, " ", 1);
+		inf->r += ft_cou_int(ft_putnbr_intmax(i));
+	}
+	else if (flg->slash == 0 &&
 		flg->zero == 0 && flg->wid == 0 && flg->preci == 0)
 	{
 		if ((inf->min_v == 1 || flg->min == 1) && i != LONG_MIN && i > 0)
