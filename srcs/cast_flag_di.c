@@ -65,10 +65,10 @@ static int	cast_flg_di_h3(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 	return (0);
 }
 
-static int	cast_flg_di_h2(t_inf *inf, intmax_t i, t_flg *flg, char *str)
+int			cast_flg_di_h2(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 {
 	if (flg->wid == 1 && flg->preci == 0 &&
-			 flg->min != 1 && inf->min_v != 1 && flg->space == 1)
+			flg->min != 1 && inf->min_v != 1 && flg->space == 1)
 	{
 		inf->cou += 1;
 		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
@@ -94,26 +94,6 @@ static int	cast_flg_di_h2(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 	return (0);
 }
 
-static int	cast_flg_di_h6(t_inf *inf, intmax_t i, t_flg *flg, char *str)
-{
-	if (flg->preci == 1 && inf->cou > 0
-			&& inf->cou_t == 0 && flg->space == 1)
-	{
-		inf->r = (flg->space == 1 && inf->wid_t != 0)
-			? inf->r += write(1, " ", 1) : inf->r;
-		inf->r = (inf->min_v == 1) ? inf->r += write(1, "-", 1) : inf->r;
-		if (inf->cou > 0 && i != 0)
-			inf->r += ps_l("0", inf->cou);
-		if (i == 0 && inf->wid != inf->wid_t)
-			inf->r += ps_l(" ", inf->wid);
-		inf->r += (i != 0) ? ft_cou_int(ft_putnbr_intmax(i)) : 0;
-	}
-	if (g_lob < inf->r)
-		return (1);
-	cast_flg_di_h2(inf, i, flg, str);
-	return (0);
-}
-
 static int	cast_flg_di_h(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 {
 	if (flg->wid == 1 && flg->preci == 0 && flg->h == 0 && flg->space != 1)
@@ -126,13 +106,13 @@ static int	cast_flg_di_h(t_inf *inf, intmax_t i, t_flg *flg, char *str)
 			inf->r += ps_l(" ", inf->cou);
 		inf->r = (inf->min_v == 1) ? inf->r += write(1, "-", 1) : inf->r;
 		inf->r += ft_cou_int(ft_putnbr_intmax(i));
+		if (inf->cou > 0 && flg->space != 1 && inf->wid_t > 0)
+		{
+			inf->cou -= 1;
+			inf->r += ps_l(" ", inf->cou);
+		}
 		if (inf->cou > 0 && flg->space != 1 && inf->min_v == 0)
 			inf->r += ps_l(" ", inf->cou);
-	}
-	else if ((flg->min == 0) && flg->pls == 1 && flg->preci == 0)
-	{
-		inf->r += write(1, "+", 1);
-		inf->r += ft_cou_int(ft_putnbr_intmax(i));
 	}
 	if (g_lob < inf->r)
 		return (1);

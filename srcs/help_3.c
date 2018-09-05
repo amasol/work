@@ -12,6 +12,8 @@
 
 #include "../includes/ft_printf.h"
 
+int g_lob;
+
 static void		initialization_flg_h(t_flg *flg, t_inf *inf)
 {
 	inf->wid = 0;
@@ -89,4 +91,29 @@ void			parsing_five(char *str, t_inf *inf, t_flg *flg)
 			inf->wid_t = 0;
 	}
 	inf->cou_three = 1;
+}
+
+int				cast_flg_di_h6(t_inf *inf, intmax_t i, t_flg *flg, char *str)
+{
+	if ((flg->min == 0) && flg->pls == 1 && flg->preci == 0)
+	{
+		inf->r += write(1, "+", 1);
+		inf->r += ft_cou_int(ft_putnbr_intmax(i));
+	}
+	else if (flg->preci == 1 && inf->cou > 0
+			&& inf->cou_t == 0 && flg->space == 1)
+	{
+		inf->r = (flg->space == 1 && inf->wid_t != 0)
+			? inf->r += write(1, " ", 1) : inf->r;
+		inf->r = (inf->min_v == 1) ? inf->r += write(1, "-", 1) : inf->r;
+		if (inf->cou > 0 && i != 0)
+			inf->r += ps_l("0", inf->cou);
+		if (i == 0 && inf->wid != inf->wid_t)
+			inf->r += ps_l(" ", inf->wid);
+		inf->r += (i != 0) ? ft_cou_int(ft_putnbr_intmax(i)) : 0;
+	}
+	if (g_lob < inf->r)
+		return (1);
+	cast_flg_di_h2(inf, i, flg, str);
+	return (0);
 }

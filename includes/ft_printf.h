@@ -151,4 +151,6 @@ int				cast_flg_s_h5(t_inf *inf, t_flg *flg, char *str, char *tmp);
 int				cast_flg_ss_h5(t_inf *inf, t_flg *flg, wchar_t *str);
 int				cast_flg_x_h5(t_inf *inf, uintmax_t i,
 								 t_flg *flg, char *str);
+int				cast_flg_di_h6(t_inf *inf, intmax_t i, t_flg *flg, char *str);
+int				cast_flg_di_h2(t_inf *inf, intmax_t i, t_flg *flg, char *str);
 #endif
