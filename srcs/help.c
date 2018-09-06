@@ -19,7 +19,8 @@ int			cast_flg_di_h5(t_inf *inf, intmax_t i, t_flg *flg)
 		inf->r += write(1, " ", 1);
 		inf->r += ft_cou_int(ft_putnbr_intmax(i));
 	}
-	else if (flg->wid == 0 && flg->min == 1 && !APPLY)
+	else if (flg->wid == 0 && flg->min == 1
+			&& inf->min_v == 0 && !APPLY)
 		inf->r += ft_cou_int(ft_putnbr_intmax(i));
 	else if (flg->slash == 0 &&
 		flg->zero == 0 && flg->wid == 0 && flg->preci == 0)
