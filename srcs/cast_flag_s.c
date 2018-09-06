@@ -18,9 +18,9 @@ static int		cast_flg_s_h4(t_inf *inf, t_flg *flg, char *str, char *tmp)
 {
 	if (inf->wid_t <= inf->wid && flg->min == 0 && inf->nothi == 1)
 	{
-		inf->wid_t = (inf->wid > inf->un_j)
-				? inf->wid_t - inf->un_j : inf->wid_t;
-		inf->wid_t = (inf->wid < inf->un_j)
+		inf->wid_t = (inf->wid > (int)inf->un_j)
+				? inf->wid_t - (int)inf->un_j : inf->wid_t;
+		inf->wid_t = (inf->wid < (int)inf->un_j)
 				? inf->wid_t - inf->wid : inf->wid_t;
 		inf->r = (inf->wid_t > 0) ? inf->r += ps_l(" ", inf->wid_t) : inf->r;
 		tmp = ft_strsub(str, 0, inf->wid);
@@ -38,7 +38,7 @@ static int		cast_flg_s_h3(t_inf *inf, t_flg *flg, char *str, char *tmp)
 {
 	if (flg->preci == 1 && inf->wid_t == 0 && flg->nothi_flg == 1)
 	{
-		inf->cou = (inf->wid > inf->un_j) ? inf->un_j : inf->wid;
+		inf->cou = (inf->wid > (int)inf->un_j) ? (int)inf->un_j : inf->wid;
 		tmp = ft_strsub(str, 0, inf->cou);
 		inf->r += ft_strlen_uintmax(tmp);
 		ft_putstr(tmp);
@@ -46,9 +46,9 @@ static int		cast_flg_s_h3(t_inf *inf, t_flg *flg, char *str, char *tmp)
 	}
 	else if (inf->wid_t >= inf->wid && flg->min == 0 && inf->nothi == 1)
 	{
-		inf->wid_t = (inf->wid >= inf->un_j)
-				? inf->wid_t - inf->un_j : inf->wid_t;
-		inf->wid_t = (inf->wid < inf->un_j)
+		inf->wid_t = (inf->wid >= (int)inf->un_j)
+				? inf->wid_t - (int)inf->un_j : inf->wid_t;
+		inf->wid_t = (inf->wid < (int)inf->un_j)
 				? inf->wid_t - inf->wid : inf->wid_t;
 		inf->r = (inf->wid_t > 0) ? inf->r += ps_l(" ", inf->wid_t) : inf->r;
 		tmp = ft_strsub(str, 0, inf->wid);

@@ -70,7 +70,7 @@ static int		cast_flg_p_h2(t_inf *inf, uintmax_t i, t_flg *flg, char *str)
 	}
 	else if (flg->space == 1 && flg->preci != 1 && inf->nothi == 1)
 	{
-		inf->r += write(1, "0x", 2);
+		inf->r += write(1, " ", 1);
 		inf->r += ft_strlen_uintmax(str);
 		ft_putstr(str);
 	}

@@ -84,7 +84,7 @@ int				cast_flg_o(t_inf *inf, uintmax_t i, t_flg *flg, char *str);
 int				cast_flg_s(t_inf *inf, t_flg *flg, char *format);
 int				cast_flg_ss(t_inf *inf, t_flg *flg, wchar_t *str);
 void			cast_flg_c(t_inf *inf, t_flg *flg, char format);
-int				cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c);
+void			cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c);
 int				cast_flg_p(t_inf *inf, uintmax_t i,
 					t_flg *flg, char *format);
 void			cancellation_flgs_di(t_flg *flg, t_inf *inf);

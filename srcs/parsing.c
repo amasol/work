@@ -58,7 +58,7 @@ void			parsing_one(char *str, t_flg *flg)
 	int i;
 
 	i = 0;
-	while (str[i] && str[i] != '%')
+	while (str[i])
 	{
 		if (str[i] == '+')
 			flg->pls = 1;
