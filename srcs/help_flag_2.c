@@ -35,12 +35,7 @@ int			ft_flg_cc(va_list lst, char *format, t_flg *flg, t_inf *inf)
 {
 	wchar_t c;
 
-	if (*format == 'C' && MB_CUR_MAX == 1)
-	{
-		ft_flg_c(lst, format, flg, inf);
-		return (1);
-	}
-	else if (*format == 'C' || (*format == 'c' && flg->l == 1))
+	if (*format == 'C' || (*format == 'c' && flg->l == 1))
 	{
 		c = va_arg(lst, wchar_t);
 		cast_flg_cc(inf, flg, c);
