@@ -89,7 +89,7 @@ int				cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c)
 		ft_putwchar(c, inf);
 	}
 	else if (flg->wid == 1 && flg->preci == 1 &&
-			 flg->check_preci == 1 && inf->wid_t == 0)
+			flg->check_preci == 1 && inf->wid_t == 0)
 	{
 		inf->cou = (inf->un_j < inf->wid) ? inf->wid - inf->un_j : inf->r;
 		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
