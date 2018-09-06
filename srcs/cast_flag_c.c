@@ -12,8 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-static int g_lob;
-
 static void		cast_flg_c_help(t_inf *inf, t_flg *flg, char str)
 {
 	if (flg->wid == 1 && flg->preci == 0 && flg->min == 1)
@@ -64,21 +62,6 @@ void			cast_flg_c(t_inf *inf, t_flg *flg, char str)
 	cast_flg_c_help(inf, flg, str);
 }
 
-static int		cast_flg_cc_h(t_inf *inf, t_flg *flg, wchar_t c)
-{
-	if (flg->preci == 1 && inf->wid >= 0 && inf->wid_t >= 0)
-	{
-		inf->cou = (inf->wid_t > inf->un_j) ? inf->wid_t - inf->un_j : inf->cou;
-		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
-		ft_putwchar(c, inf);
-	}
-	else if (flg->preci == 1)
-		ft_putwchar(c, inf);
-	else if (flg->wid == 0 && flg->preci == 0 && flg->pls == 0)
-		ft_putwchar(c, inf);
-	return (0);
-}
-
 int				cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c)
 {
 	inf->un_j = ft_lenwchar(c, inf);
@@ -88,8 +71,7 @@ int				cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c)
 		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
 		ft_putwchar(c, inf);
 	}
-	else if (flg->wid == 1 && flg->preci == 1 &&
-			flg->check_preci == 1 && inf->wid_t == 0)
+	else if (flg->wid == 1 && flg->preci == 1 && flg->check_preci == 1)
 	{
 		inf->cou = (inf->un_j < inf->wid) ? inf->wid - inf->un_j : inf->r;
 		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
@@ -101,8 +83,8 @@ int				cast_flg_cc(t_inf *inf, t_flg *flg, wchar_t c)
 		inf->r = (inf->cou > 0) ? inf->r += ps_l(" ", inf->cou) : inf->r;
 		ft_putwchar(c, inf);
 	}
-	if (g_lob < inf->r)
-		return (1);
-	cast_flg_cc_h(inf, flg, c);
-	return (0);
+	else if (flg->preci == 1)
+		ft_putwchar(c, inf);
+	else if (flg->wid == 0 && flg->preci == 0 && flg->pls == 0)
+		ft_putwchar(c, inf);
 }
